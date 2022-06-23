@@ -1,21 +1,25 @@
 #include <stdio.h>
 
-int main(void){
+#define N 40
+#define M 90
 
-    printf("This is for the first commit.\n");
-    printf("This is for the second commit.\n");
+int i,j;
 
-    
-    int num1, num2, sum;
 
-   // printf("Please enter two numbers:\n");
-    //scanf("%d %d\n", &num1, &num2);
+void print(){
+    for(i = 0; i < M+1; i++){
+        if (i==0)
+            printf("%c", 201);
+        else if (i==M)
+            printf("%c",187);
+        else
+            printf("%c", 205);
+    }
+}
 
-    sum = num1 + num2;
+int main(){
 
-    //printf("The sum of these two number is %d\n", sum);
-    printf("If this works then I understand Git to a certain degree.\n");
-    printf("This is a second test to see if i pushed to GitHub correctly.");
+    print();
 
     return 0;
 }
