@@ -10,8 +10,17 @@
 int i,j;
 int x,y;
 int car;
+<<<<<<< HEAD
 int field[N][M];
 
+=======
+int game;
+int var;
+int field[N][M];
+
+
+//Change the size of the car to be at least 2 or 4 spaces
+>>>>>>> development
 void generateField(){
 
     //empty field
@@ -27,6 +36,12 @@ void generateField(){
     car = 1;
 
     field[x][y] = car;
+<<<<<<< HEAD
+=======
+
+    //game loop status
+    game = 0;
+>>>>>>> development
 }
 
 void print(){
@@ -49,7 +64,11 @@ void print(){
         for(j = 0; j < M-1; j++){
             if(field[i][j] == 0)
                 printf("~");
+<<<<<<< HEAD
             else if(field[i][j] == car)
+=======
+            else if(field[i][j] != 0)
+>>>>>>> development
                 printf("0");
         }
         printf("%c\n", 186);
@@ -66,11 +85,98 @@ void print(){
     }
 }
 
+<<<<<<< HEAD
 int main(){
 
     generateField();
 
     print();
+=======
+void ResetScreenPosition(){
+    
+    HANDLE hOut;
+    COORD position;
+
+    hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+
+    position.X = 0;
+    position.Y = 2;
+
+    SetConsoleCursorPosition(hOut, position);
+     
+}
+
+int getchar_noblock(){
+    if(_kbhit())
+        return _getch();
+}
+
+void movement(){
+    var = getchar_noblock();
+    var = tolower(var);
+
+    //Movement Controls (W, A, S, D) (P ends the game)
+    if(var == 'd'){
+        y++;
+        field[x][y-1] = 0;
+        car++;
+        field[x][y] = car;
+    }
+    else if(var == 'a'){
+        y--;
+        field[x][y+1] = 0;
+        car++;
+        field[x][y] = car;
+    }
+    else if(var == 's'){
+        x++;
+        field[x-1][y] = 0;
+        car++;
+        field[x][y] = car;
+    }
+    else if(var == 'w'){
+        x--;
+        field[x+1][y] = 0;
+        car++;
+        field[x][y] = car;
+    }
+    
+    //Game End Button
+    else if(var == 'p'){
+        game = 1;
+    }
+    
+}
+
+//Random generation for the objects to spawn and avoid
+/*
+void random(){
+
+}
+*/
+
+//Function to spawn obstacles from the top of the play area and scroll downward over time
+/*
+void spawnObjects(){
+
+}
+*/
+
+int main(){
+
+    //generate field and car sprite
+    generateField();
+
+    //game loop
+    while(game == 0){
+        //display items
+        print();
+        ResetScreenPosition();
+        movement();
+    }
+
+    printf("Game Ended.\n");
+>>>>>>> development
 
     return 0;
 }
